@@ -28,8 +28,13 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
+
     @OneToOne(mappedBy = "tablet", cascade = CascadeType.ALL)
     private TabletEntity tablet;
+
+    @OneToOne(mappedBy = "table", cascade = CascadeType.ALL)
+    private TableEntity table;
+
 
     @Embedded
     private CreateAndUpdateEntity dateTime;

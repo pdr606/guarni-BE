@@ -26,4 +26,9 @@ public class TableEntity {
     @Column(name = "uses_count", nullable = true, columnDefinition = "0")
     @Value(value = "0")
     private Integer uses;
+
+    @OneToOne
+    @MapsId
+    private OrderEntity order;
+
 }
