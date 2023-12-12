@@ -3,6 +3,8 @@ package com.dev.guarnibe.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "TB_PRODUCT")
 @AllArgsConstructor
@@ -29,6 +31,9 @@ public class ProductEntity {
 
     @Embedded
     private CreateAndUpdateEntity dateTime;
+
+    @ManyToMany(mappedBy = "products")
+    private List<IngredientEntity> ingredient;
 
     @PrePersist
     private void initializeCreateAndUpdate(){
