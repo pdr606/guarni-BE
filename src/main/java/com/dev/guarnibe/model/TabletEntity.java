@@ -25,5 +25,9 @@ public class TabletEntity {
     @Value(value = "false")
     private boolean available;
 
+    @OneToOne
+    @MapsId
+    private OrderEntity order;
+
 
 }
