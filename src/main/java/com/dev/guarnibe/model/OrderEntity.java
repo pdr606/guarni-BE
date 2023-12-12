@@ -29,11 +29,14 @@ public class OrderEntity {
     private List<ProductEntity> products;
 
 
-    @OneToOne(mappedBy = "tablet", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private TabletEntity tablet;
 
-    @OneToOne(mappedBy = "table", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private TableEntity table;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private PaymentEntity payment;
 
 
     @Embedded
