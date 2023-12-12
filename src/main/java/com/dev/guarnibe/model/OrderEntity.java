@@ -28,6 +28,9 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
+    @OneToOne(mappedBy = "tablet", cascade = CascadeType.ALL)
+    private TabletEntity tablet;
+
     @Embedded
     private CreateAndUpdateEntity dateTime;
 
