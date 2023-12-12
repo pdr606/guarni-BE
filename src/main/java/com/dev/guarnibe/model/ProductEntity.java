@@ -35,6 +35,9 @@ public class ProductEntity {
     @ManyToMany(mappedBy = "products")
     private List<IngredientEntity> ingredient;
 
+    @ManyToMany(mappedBy = "products")
+    private List<OrderEntity> order;
+
     @PrePersist
     private void initializeCreateAndUpdate(){
         this.dateTime = new CreateAndUpdateEntity();
