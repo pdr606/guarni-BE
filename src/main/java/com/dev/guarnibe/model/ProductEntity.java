@@ -1,5 +1,6 @@
 package com.dev.guarnibe.model;
 
+import com.dev.guarnibe.model.enums.CategoryTypes;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,6 +32,9 @@ public class ProductEntity {
 
     @Embedded
     private CreateAndUpdateEntity dateTime;
+
+    @ManyToMany(mappedBy = "products")
+    private List<CategoryEntity> category;
 
     @ManyToMany(mappedBy = "products")
     private List<IngredientEntity> ingredient;
