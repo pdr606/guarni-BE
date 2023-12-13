@@ -16,8 +16,7 @@ public class OrderEntity {
     @Column(name = "tax_service")
     private Double taxService;
 
-    @Column(name = "finished", columnDefinition = "false")
-    @Value(value = "false")
+    @Column(name = "finished")
     private boolean finished;
 
     @ManyToMany
