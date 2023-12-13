@@ -2,8 +2,11 @@ package com.dev.guarnibe.model.enums;
 
 
 import com.dev.guarnibe.exceptions.InvalidException;
+import com.dev.guarnibe.model.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
