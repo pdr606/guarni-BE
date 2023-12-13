@@ -16,8 +16,7 @@ public class OrderEntity {
     @Column(name = "tax_service")
     private Double taxService;
 
-    @Column(name = "finished", columnDefinition = "false")
-    @Value(value = "false")
+    @Column(name = "finished")
     private boolean finished;
 
     @ManyToMany
@@ -29,11 +28,14 @@ public class OrderEntity {
     private List<ProductEntity> products;
 
 
-    @OneToOne(mappedBy = "tablet", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private TabletEntity tablet;
 
-    @OneToOne(mappedBy = "table", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private TableEntity table;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private PaymentEntity payment;
 
 
     @Embedded
