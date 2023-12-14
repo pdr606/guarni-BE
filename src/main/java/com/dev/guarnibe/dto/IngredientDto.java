@@ -15,7 +15,7 @@ public record IngredientDto(
         String name,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        List<ProductDto> productsList,
+        List<ProductDto> products,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
         CreateAndUpdateEntity dateTime

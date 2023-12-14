@@ -2,6 +2,7 @@ package com.dev.guarnibe.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class IngredientEntity {
 
     @Id
@@ -21,6 +23,9 @@ public class IngredientEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Embedded
+    private CreateAndUpdateEntity dateTime;
+
     @ManyToMany
     @JoinTable(
             name = "TB_PRODUCT_INGREDIENT",
@@ -28,4 +33,9 @@ public class IngredientEntity {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<ProductEntity> products;
+
+    @PrePersist
+    private void initializeCreateAndUpdate(){
+        this.dateTime = new CreateAndUpdateEntity();
+    }
 }
