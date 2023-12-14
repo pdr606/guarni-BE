@@ -46,4 +46,5 @@ public class ProductEntity {
     private void initializeCreateAndUpdate(){
         this.dateTime = new CreateAndUpdateEntity();
     }
+
 }
