@@ -36,7 +36,7 @@ public class ProductEntity {
     @ManyToMany(mappedBy = "products")
     private List<CategoryEntity> category;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
     private List<IngredientEntity> ingredient;
 
     @ManyToMany(mappedBy = "products")

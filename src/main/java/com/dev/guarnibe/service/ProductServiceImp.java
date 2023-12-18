@@ -1,50 +1,76 @@
 package com.dev.guarnibe.service;
 
+import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.ProductDto;
 import com.dev.guarnibe.mapper.ProductMapper;
+import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.model.ProductEntity;
 import com.dev.guarnibe.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ProductServiceImp implements ProductService {
 
     private final ProductRepository productRepository;
+    private final IngredientService ingredientService;
+
     @Override
-    public void save(ProductDto data) {
-        existsById(data.id());
-        ProductEntity entity = ProductMapper.INSTANCE.toEntity(data);
-        productRepository.save(entity);
+    public List<ProductDto> create(List<ProductDto> data) {
+
+        List<ProductEntity> productSaves = data.stream()
+                .map(product -> {
+                    List<IngredientEntity> ingredientEntityList = product.ingredient().stream()
+                            .map(ingredient -> ingredientService.findByName(ingredient.name()))
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toList());
+
+                    return ProductEntity.builder()
+                            .available(true)
+                            .price(product.price())
+                            .description(product.description())
+                            .ingredient(ingredientEntityList)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        productRepository.saveAll(productSaves);
+        return ProductMapper.INSTANCE.toDtoList(productSaves);
     }
 
     @Override
-    public boolean delete(ProductDto data) {
-        existsById(data.id());
-        productRepository.deleteById(data.id());
-        return true;
+    public void delete(Long id) {
+
     }
 
     @Override
     public List<ProductDto> getAll() {
-        List<ProductEntity> entityList = productRepository.findAll();
-        return ProductMapper.INSTANCE.toDtoList(entityList);
+        return ProductMapper.INSTANCE.toDtoList(productRepository.findAll());
     }
 
     @Override
-    public ProductDto getById(Long id) {
-        ProductEntity entity = productRepository.findById(id).orElseThrow(RuntimeException::new);
-        return ProductMapper.INSTANCE.toDto(entity);
+    public ProductDto findById(Long id) {
+        return null;
     }
 
     @Override
-    public boolean existsById(Long id) {
-        if(productRepository.existsById(id)){
-            return true;
-        }
-        throw new RuntimeException();
+    public ProductDto update(Long id, String name) {
+        return null;
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return false;
+    }
+
+    @Override
+    public boolean existByName(String name) {
+        return false;
     }
 }

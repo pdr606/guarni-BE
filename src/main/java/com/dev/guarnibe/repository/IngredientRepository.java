@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 
     boolean existsById(Long id);
     boolean existsByName(String name);
+
+    IngredientEntity findByName(String name);
 }
