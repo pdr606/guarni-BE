@@ -26,7 +26,7 @@ public class IngredientEntity {
     @Embedded
     private CreateAndUpdateEntity dateTime;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "TB_PRODUCT_INGREDIENT",
             joinColumns = @JoinColumn(name = "ingredient_id"),

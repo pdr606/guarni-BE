@@ -23,8 +23,7 @@ public class IngredientController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping("/{id}")
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         ingredientService.delete(id);
     }
@@ -35,9 +34,8 @@ public class IngredientController {
         return ingredientService.getAll();
     }
 
-    @PutMapping
+    @PutMapping(("/{id}"))
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping("/{id}")
     public IngredientDto update(@PathVariable Long id, @RequestBody IngredientDto dto){
         return ingredientService.update(id, dto.name());
     }

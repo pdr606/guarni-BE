@@ -3,6 +3,7 @@ package com.dev.guarnibe.service;
 import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.IngredientStatsResponseDto;
 import com.dev.guarnibe.mapper.IngredientMapper;
+import com.dev.guarnibe.mapper.ProductMapper;
 import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.repository.IngredientRepository;
 import lombok.AllArgsConstructor;
@@ -73,6 +74,14 @@ public class IngredientServiceImp implements IngredientService{
     public IngredientDto findById(Long id) {
         IngredientEntity entity = ingredientRepository.findById(id).orElseThrow(RuntimeException::new);
         return IngredientMapper.INSTANCE.toDto(entity);
+    }
+
+    @Override
+    public IngredientEntity findByName(String name) {
+        if(existByName(name)){
+            return ingredientRepository.findByName(name);
+        }
+        return null;
     }
 
     @Override
