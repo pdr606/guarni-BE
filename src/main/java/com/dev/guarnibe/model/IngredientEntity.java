@@ -1,5 +1,8 @@
 package com.dev.guarnibe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,12 +29,8 @@ public class IngredientEntity {
     @Embedded
     private CreateAndUpdateEntity dateTime;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "TB_PRODUCT_INGREDIENT",
-            joinColumns = @JoinColumn(name = "ingredient_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    @JsonIgnore
     private List<ProductEntity> products;
 
     @PrePersist

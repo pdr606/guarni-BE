@@ -24,24 +24,23 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<ProductDto> create(List<ProductDto> data) {
 
-        List<ProductEntity> productSaves = data.stream()
-                .map(product -> {
-                    List<IngredientEntity> ingredientEntityList = product.ingredient().stream()
-                            .map(ingredient -> ingredientService.findByName(ingredient.name()))
-                            .filter(Objects::nonNull)
-                            .collect(Collectors.toList());
+        List<ProductEntity> entityList = new ArrayList<>();
 
-                    return ProductEntity.builder()
-                            .available(true)
-                            .price(product.price())
-                            .description(product.description())
-                            .ingredient(ingredientEntityList)
-                            .build();
-                })
-                .collect(Collectors.toList());
+        for(ProductDto productDto : data){
+            List<IngredientEntity> ingredientEntityList = new ArrayList<>();
+            for(IngredientDto ingredientDto : productDto.ingredient()){
+                IngredientEntity ingredient = ingredientService.findByName(ingredientDto.name());
+                if(ingredient != null){
+                    ingredientEntityList.add(ingredient);
+                }
+            }
 
-        productRepository.saveAll(productSaves);
-        return ProductMapper.INSTANCE.toDtoList(productSaves);
+            ProductEntity product = ProductMapper.INSTANCE.toEntity(productDto);
+            product.setIngredient(ingredientEntityList);
+            entityList.add(product);
+        }
+
+        return productRepository.saveAll(entityList).stream().map(productEntity -> ProductMapper.INSTANCE.toDto(productEntity)).toList();
     }
 
     @Override

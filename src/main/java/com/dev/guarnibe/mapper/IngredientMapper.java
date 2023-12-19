@@ -5,6 +5,7 @@ import com.dev.guarnibe.dto.ProductDto;
 import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.model.ProductEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public interface IngredientMapper {
 
     IngredientMapper INSTANCE = Mappers.getMapper(IngredientMapper.class);
+
 
     IngredientDto toDto(IngredientEntity entity);
     IngredientEntity toEntity(IngredientDto dto);

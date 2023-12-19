@@ -3,6 +3,7 @@ package com.dev.guarnibe.service;
 import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.IngredientStatsResponseDto;
 import com.dev.guarnibe.dto.ProductDto;
+import com.dev.guarnibe.model.ProductEntity;
 
 import java.util.List;
 

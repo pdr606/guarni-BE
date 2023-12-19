@@ -21,8 +21,7 @@ public class PaymentEntity {
     @Column(name = "value", nullable = false)
     private Double value;
 
-    @Column(name = "finished", columnDefinition = "false")
-    @Value(value = "false")
+    @Column(name = "finished")
     private boolean finished;
 
     @OneToOne

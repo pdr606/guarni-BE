@@ -1,6 +1,7 @@
 package com.dev.guarnibe.controller;
 
 import com.dev.guarnibe.dto.ProductDto;
+import com.dev.guarnibe.model.ProductEntity;
 import com.dev.guarnibe.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

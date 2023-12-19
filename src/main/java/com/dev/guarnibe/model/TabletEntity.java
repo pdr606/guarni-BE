@@ -21,8 +21,7 @@ public class TabletEntity {
     @Column(name = "battery")
     private int battery;
 
-    @Column(name = "available", columnDefinition = "false")
-    @Value(value = "false")
+    @Column(name = "available")
     private boolean available;
 
     @OneToOne
