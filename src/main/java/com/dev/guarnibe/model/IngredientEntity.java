@@ -29,7 +29,7 @@ public class IngredientEntity {
     @Embedded
     private CreateAndUpdateEntity dateTime;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "ingredient", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<ProductEntity> products;
 

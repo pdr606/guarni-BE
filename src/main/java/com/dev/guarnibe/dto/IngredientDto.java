@@ -16,6 +16,7 @@ public record IngredientDto(
         String name,
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @JsonIgnore
         List<ProductDto> products,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)

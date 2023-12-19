@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class ProductServiceImp implements ProductService {
             entityList.add(product);
         }
 
-        return productRepository.saveAll(entityList).stream().map(productEntity -> ProductMapper.INSTANCE.toDto(productEntity)).toList();
+        return productRepository.saveAll(entityList).stream().map(ProductMapper.INSTANCE::toDto).toList();
     }
 
     @Override

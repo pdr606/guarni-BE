@@ -16,8 +16,10 @@ public interface IngredientMapper {
 
     IngredientMapper INSTANCE = Mappers.getMapper(IngredientMapper.class);
 
-
+    @Mapping(target = "products", ignore = true)
     IngredientDto toDto(IngredientEntity entity);
+    @Mapping(target = "products", ignore = true)
     IngredientEntity toEntity(IngredientDto dto);
+    @Mapping(target = "products", ignore = true)
     List<IngredientDto> toDtoList(List<IngredientEntity> entity);
 }

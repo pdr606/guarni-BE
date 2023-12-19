@@ -13,10 +13,9 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(target = "ingredient.products", ignore = true)
-    @InheritInverseConfiguration
+
     ProductDto toDto(ProductEntity entity);
     ProductEntity toEntity(ProductDto dto);
-    List<ProductDto> toDtoList(List<ProductEntity> entity);
-    List<ProductEntity> toEntityList( List<ProductDto> dtoList);
+    List<ProductDto> toDtoList(List<ProductEntity> entityList);
+    List<ProductEntity> toEntityList(List<ProductDto> dtoList);
 }
