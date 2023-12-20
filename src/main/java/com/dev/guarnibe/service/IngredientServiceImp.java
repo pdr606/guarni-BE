@@ -3,7 +3,6 @@ package com.dev.guarnibe.service;
 import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.IngredientStatsResponseDto;
 import com.dev.guarnibe.mapper.IngredientMapper;
-import com.dev.guarnibe.mapper.ProductMapper;
 import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.repository.IngredientRepository;
 import lombok.AllArgsConstructor;
@@ -17,6 +16,7 @@ import java.util.List;
 public class IngredientServiceImp implements IngredientService{
 
     private IngredientRepository ingredientRepository;
+    private IngredientMapper ingredientMapper;
 
     @Override
     public IngredientStatsResponseDto save(List<IngredientDto> data) {
@@ -28,7 +28,7 @@ public class IngredientServiceImp implements IngredientService{
 
         for(IngredientDto ingredient : data){
             if(!existByName(ingredient.name())){
-                entityList.add(IngredientMapper.INSTANCE.toEntity(ingredient));
+                entityList.add(ingredientMapper.toEntity(ingredient));
                 success++;
             }
             else{
@@ -67,13 +67,13 @@ public class IngredientServiceImp implements IngredientService{
     @Override
     public List<IngredientDto> getAll() {
         List<IngredientEntity> entityList = ingredientRepository.findAll();
-        return IngredientMapper.INSTANCE.toDtoList(entityList);
+        return ingredientMapper.toDtoList(entityList);
     }
 
     @Override
     public IngredientDto findById(Long id) {
         IngredientEntity entity = ingredientRepository.findById(id).orElseThrow(RuntimeException::new);
-        return IngredientMapper.INSTANCE.toDto(entity);
+        return ingredientMapper.toDto(entity);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class IngredientServiceImp implements IngredientService{
            IngredientEntity entity = ingredientRepository.getReferenceById(id);
            entity.setName(name);
            ingredientRepository.save(entity);
-           return IngredientMapper.INSTANCE.toDto(entity);
+           return ingredientMapper.toDto(entity);
        }
        throw new RuntimeException();
     }

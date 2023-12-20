@@ -1,7 +1,7 @@
 package com.dev.guarnibe.dto;
 
-import com.dev.guarnibe.model.CategoryEntity;
 import com.dev.guarnibe.model.CreateAndUpdateEntity;
+import com.dev.guarnibe.model.enums.CategoryTypes;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
@@ -11,6 +11,9 @@ import java.util.List;
 public record ProductDto(
         @JsonInclude(JsonInclude.Include.NON_NULL)
         Long id,
+
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        String name,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
         Double price,
@@ -26,6 +29,9 @@ public record ProductDto(
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
         List<IngredientDto> ingredient,
+
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        CategoryTypes type,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
         CreateAndUpdateEntity dateTime

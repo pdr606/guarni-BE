@@ -6,6 +6,7 @@ import com.dev.guarnibe.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,16 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> findAll(){
         return productService.getAll();
+    }
+
+    @PutMapping("/{id}")
+    public ProductDto update(@PathVariable Long id, @RequestBody ProductDto dto){
+        return productService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        productService.delete(id);
     }
 
 }

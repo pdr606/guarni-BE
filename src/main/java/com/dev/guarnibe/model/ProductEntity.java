@@ -21,6 +21,9 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "price", nullable = false)
     private Double price;
 
@@ -37,8 +40,8 @@ public class ProductEntity {
     @Embedded
     private CreateAndUpdateEntity dateTime;
 
-    @ManyToMany(mappedBy = "products")
-    private List<CategoryEntity> category;
+    @Enumerated(EnumType.STRING)
+    private CategoryTypes type;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(

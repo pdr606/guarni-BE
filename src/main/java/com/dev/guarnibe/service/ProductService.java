@@ -13,7 +13,7 @@ public interface ProductService{
     void delete(Long id);
     List<ProductDto> getAll();
     ProductDto findById(Long id);
-    ProductDto update(Long id, String name);
+    ProductDto update(Long id, ProductDto data);
     boolean existById(Long id);
     boolean existByName(String name);
 
