@@ -4,6 +4,7 @@ import com.dev.guarnibe.dto.ProductDto;
 import com.dev.guarnibe.model.ProductEntity;
 import com.dev.guarnibe.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
@@ -14,8 +15,8 @@ import java.util.List;
 @RequestMapping("/api/v1/product")
 public class ProductController {
 
-    private final ProductService productService;
 
+    private final ProductService productService;
 
     @PostMapping
     public List<ProductDto> save(@RequestBody List<ProductDto> data){

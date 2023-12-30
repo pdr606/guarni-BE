@@ -2,6 +2,7 @@ package com.dev.guarnibe.service;
 
 import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.IngredientStatsResponseDto;
+import com.dev.guarnibe.mapper.IngredientMapper;
 import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.repository.IngredientRepository;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class IngredientServiceImpTest {
 
     @Mock
     private IngredientRepository ingredientRepository;
-
+    private IngredientMapper ingredientMapper;
     @InjectMocks
     private IngredientServiceImp ingredientService;
 

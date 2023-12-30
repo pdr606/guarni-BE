@@ -3,6 +3,7 @@ package com.dev.guarnibe.service;
 import com.dev.guarnibe.dto.IngredientDto;
 import com.dev.guarnibe.dto.IngredientStatsResponseDto;
 import com.dev.guarnibe.dto.ProductDto;
+import com.dev.guarnibe.model.IngredientEntity;
 import com.dev.guarnibe.model.ProductEntity;
 
 import java.util.List;
@@ -16,5 +17,6 @@ public interface ProductService{
     ProductDto update(Long id, ProductDto data);
     boolean existById(Long id);
     boolean existByName(String name);
+    List<ProductDto> findAllByIngredient(List<String> ingredients);
 
 }

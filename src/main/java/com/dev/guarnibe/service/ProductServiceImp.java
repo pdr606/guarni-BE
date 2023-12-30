@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class ProductServiceImp implements ProductService {
 
     private final ProductRepository productRepository;
     private final IngredientService ingredientService;
-    private  ProductMapper productMapper;
+    private ProductMapper productMapper;
 
     @Override
     public List<ProductDto> create(List<ProductDto> data) {
@@ -96,4 +97,25 @@ public class ProductServiceImp implements ProductService {
         }
         return false;
     }
+
+    @Override
+    public List<ProductDto> findAllByIngredient(List<String> ingredients) {
+        if(ingredients.isEmpty()){
+            return Collections.emptyList();
+        }
+
+        List<IngredientEntity> ingredientEntityList = new ArrayList<>();
+
+        for(String ingredient : ingredients){
+            IngredientEntity ingredientEntity = ingredientService.findByName(ingredient);
+            if(ingredientEntity != null){
+                ingredientEntityList.add(ingredientEntity);
+            }
+        }
+
+        List<ProductEntity> productEntities = productRepository.findAllByIngredient(ingredientEntityList);
+        return productMapper.toDtoList(productEntities);
+
+    }
+
 }
